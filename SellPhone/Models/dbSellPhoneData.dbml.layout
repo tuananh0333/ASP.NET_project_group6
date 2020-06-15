@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="dbSellPhoneData">
+  <DataContextMoniker Name="/dbSellPhoneDataDataContext" />
+  <nestedChildShapes>
+    <classShape Id="75d39a94-1c5e-44c8-b441-c947bc93e4ef" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/dbSellPhoneDataDataContext/Stock" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8db32126-44c2-4521-a0bd-a03fc1900c61" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9a10dd9d-b184-4d0e-8751-b3781eae5df6" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/dbSellPhoneDataDataContext/Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38906dbe-af9a-4c6e-be79-5182a94d2f72" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="81673289-02f6-4a32-b85c-d13f57eb4593" absoluteBounds="0.75, 3.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/dbSellPhoneDataDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="95479665-4f52-4cff-b60a-83d3c928548c" absoluteBounds="0.765, 4.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

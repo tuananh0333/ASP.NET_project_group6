@@ -1,0 +1,16 @@
+﻿@{
+    IEnumerable<SellPhone.Models.Product> products = ViewData["products"] as IEnumerable<SellPhone.Models.Product>;
+    IEnumerable<SellPhone.Models.Category> category = ViewData["category"] as IEnumerable<SellPhone.Models.Category>;
+}
+
+@{
+    ViewBag.Title = @category.First().Name;
+}
+
+<h2>@category.First().Name</h2>
+
+@foreach (var product in products)
+{
+    <a href="@Url.Action("Index","Product",new { id = product.ID})">@product.Name</a>
+    <br />
+}

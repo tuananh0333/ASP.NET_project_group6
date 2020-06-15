@@ -1,0 +1,12 @@
+﻿@model IEnumerable<SellPhone.Models.Product>
+@{
+    ViewBag.Title = @Model.First().Name;
+}
+
+<h2>@Model.First().Name</h2>
+
+<img src="@Model.First().Image" style="object-fit: cover; width: 100px; height: 120px" />
+
+<h3>@String.Format("{0:#,#.}", Model.First().Price) VND</h3>
+
+<p>@Model.First().Description</p>
