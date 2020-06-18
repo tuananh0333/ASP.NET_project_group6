@@ -6,8 +6,5 @@
 
 <h2>SellPhone</h2>
 
-@foreach (var cates in Model)
-{
-    <a href="@Url.Action("Index","Category",new { id = cates.ID})">@cates.Name</a> <br />
-}
+@Html.Action("CategogiesList")
 

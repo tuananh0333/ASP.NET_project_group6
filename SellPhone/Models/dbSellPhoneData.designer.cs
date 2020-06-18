@@ -36,7 +36,7 @@ namespace SellPhone.Models
     #endregion
 		
 		public dbSellPhoneDataDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SELLPHONEConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SELLPHONEConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -65,14 +65,6 @@ namespace SellPhone.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Stock> Stocks
-		{
-			get
-			{
-				return this.GetTable<Stock>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Category> Categories
 		{
 			get
@@ -81,74 +73,19 @@ namespace SellPhone.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<Stock> Stocks
+		{
+			get
+			{
+				return this.GetTable<Stock>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Product> Products
 		{
 			get
 			{
 				return this.GetTable<Product>();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Stock")]
-	public partial class Stock
-	{
-		
-		private int _ProductID;
-		
-		private int _Sold;
-		
-		private int _Valid;
-		
-		public Stock()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
-		public int ProductID
-		{
-			get
-			{
-				return this._ProductID;
-			}
-			set
-			{
-				if ((this._ProductID != value))
-				{
-					this._ProductID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sold", DbType="Int NOT NULL")]
-		public int Sold
-		{
-			get
-			{
-				return this._Sold;
-			}
-			set
-			{
-				if ((this._Sold != value))
-				{
-					this._Sold = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valid", DbType="Int NOT NULL")]
-		public int Valid
-		{
-			get
-			{
-				return this._Valid;
-			}
-			set
-			{
-				if ((this._Valid != value))
-				{
-					this._Valid = value;
-				}
 			}
 		}
 	}
@@ -259,6 +196,69 @@ namespace SellPhone.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Stock")]
+	public partial class Stock
+	{
+		
+		private int _ProductID;
+		
+		private int _Sold;
+		
+		private int _Valid;
+		
+		public Stock()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this._ProductID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sold", DbType="Int NOT NULL")]
+		public int Sold
+		{
+			get
+			{
+				return this._Sold;
+			}
+			set
+			{
+				if ((this._Sold != value))
+				{
+					this._Sold = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valid", DbType="Int NOT NULL")]
+		public int Valid
+		{
+			get
+			{
+				return this._Valid;
+			}
+			set
+			{
+				if ((this._Valid != value))
+				{
+					this._Valid = value;
+				}
 			}
 		}
 	}

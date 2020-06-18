@@ -19,5 +19,12 @@ namespace SellPhone.Controllers
             ViewBag.Categories = categories;
             return View(categories);
         }
+
+        public ActionResult CategogiesList()
+        {
+            var categories = from c in data.Categories select c;
+            ViewBag.Categories = categories;
+            return View(categories);
+        }
     }
 }

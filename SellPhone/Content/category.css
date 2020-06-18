@@ -1,0 +1,9 @@
+﻿.row .col-md-4 {
+    padding: 10px;
+}
+
+.row .col-md-4 .content {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+}
