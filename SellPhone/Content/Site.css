@@ -7,14 +7,22 @@ footer p {
 }
 
 .navbar {
+<<<<<<< HEAD
     position: fixed;
+=======
+    position:fixed;
+>>>>>>> 28ddd83f60a52c7e85314b77bcb0016a7adcc71b
     top:0;
     right:0;
     left:0;
     background-color: #333;
     border:none;
     border-radius: 0px;
+<<<<<<< HEAD
     z-index:4;
+=======
+    z-index: 5;
+>>>>>>> 28ddd83f60a52c7e85314b77bcb0016a7adcc71b
 }
 
 .navbar a {
@@ -53,6 +61,7 @@ footer p {
 .dropdown-content {
     display: none;
     position: absolute;
+<<<<<<< HEAD
     z-index: 10;
     min-width: 160px;
 }
@@ -68,6 +77,25 @@ footer p {
         margin: 5px 0px;
         box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.3);
     }
+=======
+    z-index: 3;
+    overflow: visible;
+    min-width: 160px;
+    
+}
+
+.dropdown-content a {
+    float: none;
+    color: #fff;
+    background-color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 5px 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+>>>>>>> 28ddd83f60a52c7e85314b77bcb0016a7adcc71b
 
 .dropdown:hover .dropdown-content {
     display: block;

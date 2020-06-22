@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿.row .col-md-4 .content {
     text-align: center;
     background: #fff;
@@ -26,4 +27,14 @@
 
 .form-inline .form-group {
     float: right;
+=======
+﻿.row .col-md-4 {
+    padding: 10px;
+}
+
+.row .col-md-4 .content {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+>>>>>>> 28ddd83f60a52c7e85314b77bcb0016a7adcc71b
 }
