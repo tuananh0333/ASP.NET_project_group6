@@ -113,6 +113,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\category.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -131,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbSellPhoneData.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\SortWithCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

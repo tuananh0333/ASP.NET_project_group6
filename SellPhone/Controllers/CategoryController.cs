@@ -24,5 +24,21 @@ namespace SellPhone.Controllers
             ViewBag.Categories = data.Categories.ToList();
             return View();
         }
+
+        public ActionResult Sort(FormCollection collection)
+        {
+            Console.WriteLine(Request.Params.ToString());
+
+
+            var products = from p in data.Products where p.CategoryID == 1 select p;
+            var category = from c in data.Categories where c.ID == 1 select c;
+
+            ViewData["products"] = products;
+            ViewData["category"] = category;
+
+            ViewBag.Categories = data.Categories.ToList();
+
+            return View("~/Views/Category/Index.cshtml");
+        }
     }
 }

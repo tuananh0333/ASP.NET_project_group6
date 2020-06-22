@@ -1,16 +1,20 @@
 ﻿body {
     padding-top: 50px;
-
     background-color: cornsilk; 
+}
+footer p {
+    text-align: center;
 }
 
 .navbar {
+    position: fixed;
     top:0;
     right:0;
     left:0;
     background-color: #333;
     border:none;
     border-radius: 0px;
+    z-index:4;
 }
 
 .navbar a {
@@ -24,8 +28,9 @@
 
 .dropdown {
     float: left;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
+    z-index: 5;
 }
 
 .dropdown .dropbtn {
@@ -46,27 +51,23 @@
 }
 
 .dropdown-content {
-    display: block;
+    display: none;
     position: absolute;
-    z-index: 3;
-    overflow: visible;
-    top: 49px;
-    left: 30px;
-    background-color: #000;
+    z-index: 10;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown-content a {
-    float: none;
-    color: #000;
-    background-color: #fefefe;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    margin: 5px 0px;
-}
+    .dropdown-content a {
+        float: none;
+        color: #fff;
+        background-color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        margin: 5px 0px;
+        box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.3);
+    }
 
 .dropdown:hover .dropdown-content {
     display: block;
