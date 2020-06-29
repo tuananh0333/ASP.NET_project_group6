@@ -2,5 +2,5 @@
 
 @foreach (var c in Model)
 {
-    <a href="@Url.Action("Index","Product", new { id = c.ID})"> @c.Name</a>
+    <a href="@Url.Action("Index","Category", new { id = c.ID})"> @c.Name</a>
 }

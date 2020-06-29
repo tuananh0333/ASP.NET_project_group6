@@ -20,6 +20,7 @@ namespace SellPhone.Controllers
 
             ViewData["products"] = products;
             ViewData["category"] = category;
+            ViewData["sortValues"] = null;
 
             ViewBag.Categories = data.Categories.ToList();
             return View();
@@ -27,14 +28,32 @@ namespace SellPhone.Controllers
 
         public ActionResult Sort(FormCollection collection)
         {
-            Console.WriteLine(Request.Params.ToString());
+            String option = Request.Params["option"];
+            String cate = Request.Params["category"];
 
+            var cateNum = Int16.Parse(cate);
+
+            IQueryable<Product> sortValue = null;
+
+            switch (option)
+            {
+                case "t-c":
+                    sortValue = from p in data.Products where p.CategoryID == cateNum orderby p.Price ascending select p;
+                    break;
+                case "c-t":
+                    sortValue = from p in data.Products where p.CategoryID == cateNum orderby p.Price descending select p;
+                    break;
+                default:
+                    sortValue = from p in data.Products where p.CategoryID == cateNum orderby p.Name ascending select p;
+                    break;
+            }
 
             var products = from p in data.Products where p.CategoryID == 1 select p;
             var category = from c in data.Categories where c.ID == 1 select c;
 
             ViewData["products"] = products;
             ViewData["category"] = category;
+            ViewData["sortValues"] = sortValue;
 
             ViewBag.Categories = data.Categories.ToList();
 

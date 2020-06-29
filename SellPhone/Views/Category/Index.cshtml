@@ -2,11 +2,14 @@
 
 @{
     IEnumerable<SellPhone.Models.Product> products = ViewData["products"] as IEnumerable<SellPhone.Models.Product>;
+    IEnumerable<SellPhone.Models.Product> sortValues = ViewData["sortValues"] as IEnumerable<SellPhone.Models.Product>;
     IEnumerable<SellPhone.Models.Category> category = ViewData["category"] as IEnumerable<SellPhone.Models.Category>;
 }
 
 @{
     ViewBag.Title = @category.First().Name;
+
+
 }
 
 <h2 id="category-name">@category.First().Name</h2>
@@ -24,16 +27,34 @@
 </form>
 
 <div class="row">
-    @foreach (var product in products)
+    @if (sortValues != null)
     {
-        <a href="@Url.Action("Index","Product",new { id = product.ID})">
-            <div class="col-md-4">
-                <div class="content">
-                    <img src="@product.Image" style="object-fit: cover; width: 100px; height: 120px" />
-                    <p><b>@product.Name</b></p>
-                    <h4>@String.Format("{0:#,#.}", @product.Price) VND</h4>
+        foreach (var product in sortValues)
+        {
+            <a href="@Url.Action("Index", "Product", new { id = product.ID })">
+                <div class="col-md-4">
+                    <div class="content">
+                        <img src="@product.Image" style="object-fit: cover; width: 100px; height: 120px" />
+                        <p><b>@product.Name</b></p>
+                        <h4>@String.Format("{0:#,#.}", @product.Price) VND</h4>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        }
+    } else {
+        foreach (var product in products)
+        {
+            <a href="@Url.Action("Index","Product",new { id = product.ID})">
+                <div class="col-md-4">
+                    <div class="content">
+                        <img src="@product.Image" style="object-fit: cover; width: 100px; height: 120px" />
+                        <p><b>@product.Name</b></p>
+                        <h4>@String.Format("{0:#,#.}", @product.Price) VND</h4>
+                    </div>
+                </div>
+            </a>
+        }
     }
+
+
 </div>
