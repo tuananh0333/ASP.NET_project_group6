@@ -1,4 +1,7 @@
-﻿@model IEnumerable<SellPhone.Models.Product>
+﻿<link href="~/Content/product.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/product.js"></script>
+
+@model IEnumerable<SellPhone.Models.Product>
 @{
     ViewBag.Title = @Model.First().Name;
 }
@@ -8,5 +11,15 @@
 <img src="@Model.First().Image" style="object-fit: cover; width: 100px; height: 120px" />
 
 <h3>@String.Format("{0:#,#.}", Model.First().Price) VND</h3>
+
+<div class="quantity">
+    <button class="plus-btnn" type="button" name="button">
+        +
+    </button>
+    <input type="reset" name="name" value="1">
+    <button class="minus-btnn" type="button" name="button">
+        -
+    </button>
+</div>
 
 <p>@Model.First().Description</p>

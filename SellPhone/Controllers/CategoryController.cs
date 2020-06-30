@@ -48,8 +48,8 @@ namespace SellPhone.Controllers
                     break;
             }
 
-            var products = from p in data.Products where p.CategoryID == 1 select p;
-            var category = from c in data.Categories where c.ID == 1 select c;
+            var products = from p in data.Products where p.CategoryID == cateNum select p;
+            var category = from c in data.Categories where c.ID == cateNum select c;
 
             ViewData["products"] = products;
             ViewData["category"] = category;
