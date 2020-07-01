@@ -16,6 +16,8 @@ namespace SellPhone.Controllers
         {
             var categories = data.Categories.ToList();
 
+            Session["cart"] = 1;
+
             ViewBag.Categories = categories;
             return View(categories);
         }
