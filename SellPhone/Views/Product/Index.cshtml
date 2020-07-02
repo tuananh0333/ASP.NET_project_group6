@@ -6,9 +6,13 @@
     ViewBag.Title = @Model.First().Name;
 }
 
-<div id="cart-view">
-    Cart: <span>0</span> @Session["cart"].ToString()
-</div>
+<input id="prodId" value="@Model.First().ID" type="hidden">
+
+<a href="@Url.Action("Index", "cart")">
+    <div id="cart-view">
+        Cart: <span>@Session["cart"].ToString()</span>
+    </div>
+</a>
 
 <h2>@Model.First().Name</h2>
 
@@ -18,12 +22,12 @@
 
 
 <div class="quantity">
-    <button class="plus-btnn" id="plus-btnn" type="button" name="button">
-        +
-    </button>
-    <input id="cart-value" type="reset" name="name" value="1">
     <button class="minus-btnn" id="minus-btnn" type="button" name="button">
         -
+    </button>
+    <input id="cart-value" type="reset" name="name" value="1">
+    <button class="plus-btnn" id="plus-btnn" type="button" name="button">
+        +
     </button>
 </div>
 <button id="add-to-cart">Add to cart</button>

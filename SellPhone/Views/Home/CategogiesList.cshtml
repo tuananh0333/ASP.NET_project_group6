@@ -1,6 +1,0 @@
-﻿@model IEnumerable<SellPhone.Models.Category>
-
-@foreach (var c in Model)
-{
-    <a href="@Url.Action("Index","Category", new { id = c.ID})"> @c.Name</a>
-}

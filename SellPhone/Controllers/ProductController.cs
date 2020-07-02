@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SellPhone.Models;
+using System.Web.Services;
 
 namespace SellPhone.Controllers
 {
@@ -18,6 +19,19 @@ namespace SellPhone.Controllers
 
             ViewBag.Categories = data.Categories.ToList();
             return View(product);
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void SetCart(string value, int prodId, int newValue)
+        {
+            if (Session != null)
+            {
+                Session["cart"] = value;
+                Dictionary<int, int> cartInfo = (Dictionary<int, int>) Session["cartInfo"];
+
+                cartInfo[prodId] += newValue;
+                Session["cartInfo"] = cartInfo;
+            }
         }
     }
 }
