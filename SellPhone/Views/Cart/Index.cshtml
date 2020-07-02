@@ -1,0 +1,20 @@
+﻿
+@{
+    List<SellPhone.Models.Product> cartValues = ViewData["cartValues"] as List<SellPhone.Models.Product>;
+    Dictionary<int, int> cartInfo = ViewData["cartInfo"] as Dictionary<int, int>;
+}
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Cart</h2>
+
+@foreach (var prod in cartValues)
+{
+    <p>@prod.Name</p>
+    <p>@prod.Price</p>
+    <p>@cartInfo[prod.ID]</p>
+    <br />
+}
+

@@ -36,7 +36,7 @@ namespace SellPhone.Models
     #endregion
 		
 		public dbSellPhoneDataDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SELLPHONEConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SELLPHONEConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
