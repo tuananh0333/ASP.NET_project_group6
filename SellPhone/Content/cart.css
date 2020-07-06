@@ -1,0 +1,16 @@
+﻿.col-md-12 {
+    text-align: center;
+    background: #fdfdfd;
+    margin-bottom: 15px;
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.col-md-12 .row .col-md-3>p {
+    padding-top: 20px;
+}
+
+.col-md-12 .row .col-md-3 > button {
+    margin-top: 20px;
+}
