@@ -22,7 +22,7 @@ namespace SellPhone.Controllers
         }
 
         [WebMethod(EnableSession = true)]
-        public void SetCart(string value, int prodId, int newValue)
+        public void SetCart(int value, int prodId, int newValue)
         {
             if (Session != null)
             {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using SellPhone.Models;
 
 namespace SellPhone.Controllers
@@ -33,6 +34,21 @@ namespace SellPhone.Controllers
             ViewData["cartValues"] = list;
             ViewBag.Categories = categories;
             return View();
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void removeCart(int id)
+        {
+            if (Session != null)
+            {
+                int cart = (int)Session["cart"];
+                Dictionary<int, int> cartInfo = (Dictionary<int, int>)Session["cartInfo"];
+
+                cartInfo[id] -= 1;
+                cart -= 1;
+                Session["cartInfo"] = cartInfo;
+                Session["cart"] = cart;
+            }
         }
     }
 }

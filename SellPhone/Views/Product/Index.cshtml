@@ -1,5 +1,4 @@
 ﻿<link href="~/Content/product.css" rel="stylesheet" type="text/css" />
-<script src="~/Scripts/product.js"></script>
 
 @model IEnumerable<SellPhone.Models.Product>
 @{
@@ -7,12 +6,6 @@
 }
 
 <input id="prodId" value="@Model.First().ID" type="hidden">
-
-<a href="@Url.Action("Index", "cart")">
-    <div id="cart-view">
-        Cart: <span>@Session["cart"].ToString()</span>
-    </div>
-</a>
 
 <h2>@Model.First().Name</h2>
 
@@ -33,3 +26,5 @@
 <button id="add-to-cart">Add to cart</button>
 
 <p>@Model.First().Description</p>
+
+<script src="~/Scripts/product.js"></script>
