@@ -11,7 +11,7 @@ namespace SellPhone.Controllers
     public class ProductController : Controller
     {
         dbSellPhoneDataDataContext data = new dbSellPhoneDataDataContext();
-
+         
         // GET: Product
         public ActionResult Index(int id)
         {
