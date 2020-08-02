@@ -1,0 +1,80 @@
+﻿<link href="~/Content/cart.css" rel="stylesheet" type="text/css" />
+
+@{
+    List<SellPhone.Models.Product> cartValues = ViewData["cartValues"] as List<SellPhone.Models.Product>;
+    Dictionary<int, int> cartInfo = ViewData["cartInfo"] as Dictionary<int, int>;
+}
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Cart</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                Product
+            </div>
+            <div class="col-md-3">
+                Amount
+            </div>
+            <div class="col-md-3">
+                Price
+            </div>
+            <div class="col-md-3">
+                Delete
+            </div>
+        </div>
+    </div>
+    @{var totalPrice = 0;}
+
+<div id="cartView">
+    @if (cartValues.Count == 0)
+    {
+        <div class="text-center">
+            Cart is empty yet
+        </div>
+    }
+    else
+    {
+        foreach (var prod in cartValues)
+        {
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="@prod.Image" style="object-fit: cover; width: 50px; height: 60px" />
+                            </div>
+                            <div class="col-md-8">
+                                <b><p>@prod.Name</p></b>
+                                <p>@String.Format("{0:#,#.}", @prod.Price) VND</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <p>@cartInfo[prod.ID]</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>@String.Format("{0:#,#.}", @prod.Price * cartInfo[prod.ID]) VND</p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="delete-row" id="@prod.ID">-</button>
+                    </div>
+                </div>
+            </div>
+            totalPrice = totalPrice + (prod.Price * cartInfo[prod.ID]);
+        }
+    }
+</div>
+
+    <button id="pay">
+        Pay @totalPrice
+    </button>
+
+</div>
+
+<script src="~/Scripts/cart.js"></script>
+

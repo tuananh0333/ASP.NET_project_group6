@@ -1,0 +1,20 @@
+﻿@using SellPhone.Models
+
+
+<div class="container">
+    @Html.ActionLink("Sell phone", "Index", "Home")
+    <div class="dropdown">
+        <button class="dropbtn">
+            Categories
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <a href="@Url.Action("Index","Category",new { id = c.ID})">@c.Name</a>
+            }
+        </div>
+
+
+    </div>
+</div>

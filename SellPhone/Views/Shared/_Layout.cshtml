@@ -10,10 +10,10 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/c3268f3933.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="navbar">
-
         <div class="container">
             @Html.ActionLink("Sell phone", "Index", "Home")
             <div class="dropdown">
@@ -27,11 +27,16 @@
                         <a href="@Url.Action("Index","Category",new { id = c.ID})">@c.Name</a>
                     }
                 </div>
-
-
             </div>
+            <a href="@Url.Action("Index", "Login")" class="navbar-right">
+                Login
+            </a>
+            <a href="@Url.Action("Index", "Cart")" class="navbar-right">
+                <div id="cart-view">
+                    <i class="fas fa-shopping-cart"></i> <span>@Session["cart"].ToString()</span>
+                </div>
+            </a>
         </div>
-        @*@Html.Action("CategogiesList", "Home")*@
     </div>
 
     <div class="container body-content">
