@@ -5,6 +5,10 @@
 
         removeCartVal(id, selector);
     });
+
+    $("#pay").on("click", function () {
+        location.replace("/Cart/Address");
+    });
 });
 
 function removeCartVal(id, selector) {

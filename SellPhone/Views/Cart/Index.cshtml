@@ -11,7 +11,7 @@
 
 <h2>Cart</h2>
 
-<div class="row">
+<div class="row clearfix">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-3">
@@ -70,9 +70,9 @@
     }
 </div>
 
-    <button id="pay">
-        Pay @totalPrice
-    </button>
+<button class="btn-warning p-5" style="float:right" id="pay">
+    Pay @String.Format("{0:#,#.}", @totalPrice) VND
+</button>
 
 </div>
 
