@@ -215,19 +215,18 @@ namespace SellPhone.Controllers
                 }
             }
 
-            /*if (Session["User"] != null)
-            {
-
-            } else
-            {
-
-            }*/
-
             Bill objbill = new Bill();
             objbill.name = name;
             objbill.mobile = phone;
             objbill.address = address;
-            objbill.userId = null;
+            if (Session["currentUser"] != null)
+            {
+                objbill.userId = ((Customer)Session["currentUser"]).ID;
+            }
+            else
+            {
+                objbill.userId = null;
+            }
             objbill.products = products;
             objbill.totalPrice = totalPrice;
 

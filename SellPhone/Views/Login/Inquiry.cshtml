@@ -1,7 +1,64 @@
-﻿
+﻿<link href="~/Content/cart.css" rel="stylesheet" type="text/css" />
+
+@using SellPhone.Models;
+
 @{
-    ViewBag.Title = "Inquiry";
+    List<Bill> bills = ViewData["bills"] as List<SellPhone.Models.Bill>;
+    List<Dictionary<Product, int>> lstProducts = ViewData["lstProducts"] as List<Dictionary<Product, int>>;
 }
 
-<h2>Inquiry</h2>
+<h1>Trang thông tin cá nhân</h1>
 
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-3">
+            Tên
+        </div>
+        <div class="col-md-3">
+            Số điện thoại
+        </div>
+        <div class="col-md-3">
+            Sản phẩm
+        </div>
+        <div class="col-md-3">
+            Tổng tiền
+        </div>
+    </div>
+</div>
+
+<div id="cartView">
+    @if (bills.Count == 0)
+    {
+        <div class="text-center">
+            Hiện chưa có đơn hàng nào
+        </div>
+    }
+    else
+    {
+        foreach (var bll in bills)
+        {
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        @bll.name
+                    </div>
+                    <div class="col-md-3">
+                        @bll.mobile
+                    </div>
+                    <div class="col-md-3">
+                        @foreach(var pr in lstProducts[bills.IndexOf(bll)])
+                        {
+                            <div class="row">
+                                <div class="col-lg-6">@pr.Key.Name</div>
+                                <div class="col-lg-6">@pr.Value</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-3">
+                        @String.Format("{0:#,#.}", @bll.totalPrice) VND
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

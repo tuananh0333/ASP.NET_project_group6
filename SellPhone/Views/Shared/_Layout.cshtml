@@ -28,17 +28,24 @@
                     }
                 </div>
             </div>
+            @{ 
+                Customer usr = null;
+                if (Session["currentUser"] != null)
+                {
+                    usr = (Customer)Session["currentUser"];
+                }
+            }
 
             @if (Session["currentUser"] != null)
             {
                 <div class="dropdown navbar-right">
                     <button class="dropbtn">
-                        @((Customer)Session["currentUser"]).Name;
+                        @usr.Name
                     </button>
                     <div class="dropdown-content">
-                        <a href="#">Thông tin cá nhân</a>
+                        <a href="@Url.Action("Inquiry", "Login")">Thông tin cá nhân</a>
                         <a href="#">Địa chỉ</a>
-                        <a href="#">Đăng Xuất</a>
+                        <a id="logOut" >Đăng Xuất</a>
                     </div>
                 </div>
             }
@@ -74,5 +81,19 @@
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#logOut").on('click', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Login/signOut',
+                    success: function (response) {
+                        location.replace("/");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
