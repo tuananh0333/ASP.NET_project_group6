@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Services;
 using SellPhone.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using SellPhone.Models;
 using Newtonsoft.Json.Linq;
 
 namespace SellPhone.Controllers
@@ -125,10 +122,127 @@ namespace SellPhone.Controllers
             return output;
         }
 
-        [HttpPost]
-        public ActionResult Confirm(string name, string phone, string address)
+        [WebMethod(EnableSession = true)]
+        public String getWards(int districtId)
         {
+            var listWards = new List<string>();
+            var listWardIds = new List<string>();
+            var wardObject = callApi("https://thongtindoanhnghiep.co/api/district" + "/" + districtId + "/ward", "");
+
+            foreach (var item in wardObject.Children())
+            {
+                var itemProperties = item.Children<JProperty>();
+                var myElement = itemProperties.FirstOrDefault(x => x.Name == "Title");
+                listWards.Add(myElement.Value.ToString());
+                myElement = itemProperties.FirstOrDefault(x => x.Name == "ID");
+                listWardIds.Add(myElement.Value.ToString());
+            }
+            String output = "";
+
+            foreach (String ward in listWards)
+            {
+                output += ward;
+                output += "$" + listWardIds[listWards.IndexOf(ward)];
+                if (listWards.IndexOf(ward) != listWards.Count - 1)
+                {
+                    output += "#";
+                }
+            }
+
+            return output;
+        }
+
+        [HttpPost]
+        public ActionResult Confirm(string name, string phone, string city, string district, string ward, string homeDetail)
+        {
+            var categories = data.Categories.ToList();
+            ViewBag.Categories = categories;
+
+            String userInfo = name + "#" + phone + "#" + city + "#" + district + "#" + ward + "#" + homeDetail;
+            Session["userInfo"] = userInfo;
+
+            var cityObject = callApi("https://thongtindoanhnghiep.co/api/city" + "/" + city, "");
+            var districtObject = callApi("https://thongtindoanhnghiep.co/api/district" + "/" + district, "");
+            var wardObject = callApi("https://thongtindoanhnghiep.co/api/ward" + "/" + ward, "");
+
+            var itemProperties = cityObject.Children<JProperty>();
+            var cityName = itemProperties.FirstOrDefault(x => x.Name == "Title").Value.ToString();
+            itemProperties = districtObject.Children<JProperty>();
+            var districtName = itemProperties.FirstOrDefault(x => x.Name == "Title").Value.ToString();
+            itemProperties = wardObject.Children<JProperty>();
+            var wardName = itemProperties.FirstOrDefault(x => x.Name == "Title").Value.ToString();
+
+            userInfo = name + "#" + phone + "#" + cityName + "#" + districtName + "#" + wardName + "#" + homeDetail;
+
+            ViewData["userInfo"] = userInfo;
+
+            var cartInfo = (Dictionary<int, int>)Session["cartInfo"];
+            List<Product> list = new List<Product>();
+
+            foreach (var prod in cartInfo)
+            {
+                if (prod.Value > 0)
+                {
+                    var product = from p in data.Products where p.ID == prod.Key select p;
+                    list.Add(product.First());
+                }
+            }
+            ViewData["cartValues"] = list;
+
             return View("~/Views/Cart/Confirm.cshtml");
+        }
+
+        public ActionResult Complete()
+        {
+            var categories = data.Categories.ToList();
+            ViewBag.Categories = categories;
+
+            String billInfo = (String)Session["userInfo"];
+
+            var name = billInfo.Split('#')[0];
+            var phone = billInfo.Split('#')[1];
+            var address = billInfo.Split('#')[2] + "#" + billInfo.Split('#')[3] + "#" + billInfo.Split('#')[4] + "#" + billInfo.Split('#')[5];
+            var products = "";
+            var totalPrice = 0;
+            var cartInfo = (Dictionary<int, int>)Session["cartInfo"];
+            foreach (var prod in cartInfo)
+            {
+                if (prod.Value > 0)
+                {
+                    products += prod.Key + "$" + prod.Value + "#";
+                    var product = from p in data.Products where p.ID == prod.Key select p;
+                    totalPrice += product.First().Price * prod.Value;
+                }
+            }
+
+            /*if (Session["User"] != null)
+            {
+
+            } else
+            {
+
+            }*/
+
+            Bill objbill = new Bill();
+            objbill.name = name;
+            objbill.mobile = phone;
+            objbill.address = address;
+            objbill.userId = null;
+            objbill.products = products;
+            objbill.totalPrice = totalPrice;
+
+            data.Bills.InsertOnSubmit(objbill);
+            data.SubmitChanges();
+
+            var prodcts = data.Products.ToList();
+            var cartIf = new Dictionary<int, int>();
+            foreach (var prdt in prodcts)
+            {
+                cartIf.Add(prdt.ID, 0);
+            }
+            Session["cartInfo"] = cartIf;
+            Session["cart"] = 0;
+            return View();
         }
     }
 }

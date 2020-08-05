@@ -1,0 +1,40 @@
+﻿<link href="~/Content/category.css" rel="stylesheet" type="text/css" />
+
+@{
+    IEnumerable<SellPhone.Models.Product> products = ViewData["products"] as IEnumerable<SellPhone.Models.Product>;
+    IEnumerable<SellPhone.Models.Category> category = ViewData["category"] as IEnumerable<SellPhone.Models.Category>;
+}
+
+@{
+    ViewBag.Title = @category.First().Name;
+}
+
+<h2 id="category-name">@category.First().Name</h2>
+
+<form class="form-inline" method="get" action="@Url.Action("Sort", "Category")">
+    <div class="form-group">
+        <input hidden name="category" value="@category.First().ID">
+        <select class="form-control" id="option" name="option">
+            <option value="ten">Tên</option>
+            <option value="c-t">Giá cao -> thấp</option>
+            <option value="t-c">Giá thấp -> cao</option>
+        </select>
+        <input type="submit" value="Sắp xếp" class="btn btn-default">
+    </div>
+</form>
+
+<div class="row">
+    @foreach (var product in products)
+    {
+        <a href="@Url.Action("Index","Product",new { id = product.ID})">
+
+            <div class="col-md-4">
+                <div class="content">
+                    <img src="@product.Image" style="object-fit: cover; width: 100px; height: 120px" />
+                    <p><b> @product.Name </b></p>
+                    <h4>@String.Format("{0:#,#.}", product.Price) VND</h4>
+                </div>
+            </div>
+        </a>
+    }
+</div>

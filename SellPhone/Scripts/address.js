@@ -20,4 +20,25 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#district').change(function (e) {
+        e.preventDefault();
+        var id = $(this).val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Cart/getWards',
+            data: {
+                districtId: id
+            },
+            success: function (result) {
+                $("#ward").empty();
+                for (var i = 0; i < result.split("#").length; i++) {
+                    var id = (result.split("#")[i]).split("$")[1];
+                    var name = (result.split("#")[i]).split("$")[0];
+                    $("#ward").append('<option value="' + id + '">' + name + '</option>');
+                }
+            }
+        });
+    });
 });

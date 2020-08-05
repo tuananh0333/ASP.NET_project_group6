@@ -28,12 +28,37 @@
                     }
                 </div>
             </div>
-            <a href="@Url.Action("Index", "Login")" class="navbar-right">
-                Login
-            </a>
+
+            @if (Session["currentUser"] != null)
+            {
+                <div class="dropdown navbar-right">
+                    <button class="dropbtn">
+                        @((Customer)Session["currentUser"]).Name;
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Thông tin cá nhân</a>
+                        <a href="#">Địa chỉ</a>
+                        <a href="#">Đăng Xuất</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Login")" class="navbar-right">
+                    Login
+                </a>
+            }
+
             <a href="@Url.Action("Index", "Cart")" class="navbar-right">
                 <div id="cart-view">
-                    <i class="fas fa-shopping-cart"></i> <span>@Session["cart"].ToString()</span>
+                    <i class="fas fa-shopping-cart"></i> 
+                    <span>
+                        @if (Session["cart"] == null)
+                        {
+                            Session["cart"] = 0;
+                        }
+                        @Session["cart"].ToString()
+                    </span>
                 </div>
             </a>
         </div>

@@ -5,18 +5,24 @@
 
 <h2>Login to SellPhone</h2>
 
-<form action="/action_page.php" method="post">
-    <div class="form-group">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username" required>
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-        <button type="submit">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+            <div class="alert alert-danger" id="error" style="display:none">
+                <strong>Opps!</strong> Tên đăng nhập hoặc mật khẩu bị sai
+            </div>
+            <button id="btnLogin">Login</button>
+        </div>
     </div>
-</form>
+    <div class="col-md-3"></div>
+</div>
+
+<script src="~/Scripts/login.js"></script>
 

@@ -17,13 +17,16 @@ namespace SellPhone.Controllers
             var categories = data.Categories.ToList();
             var products = data.Products.ToList();
 
-            Session["cart"] = 0;
-            var cartInfo = new Dictionary<int, int>();
-            foreach (var prod in products)
+            if (Session["cart"] == null)
             {
-                cartInfo.Add(prod.ID, 0);
+                Session["cart"] = 0;
+                var cartInfo = new Dictionary<int, int>();
+                foreach (var prod in products)
+                {
+                    cartInfo.Add(prod.ID, 0);
+                }
+                Session["cartInfo"] = cartInfo;
             }
-            Session["cartInfo"] = cartInfo;
 
             ViewBag.Categories = categories;
             return View(categories);
